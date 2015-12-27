@@ -16,7 +16,8 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
 // Routers
-socialtextRouter.route('/').get(router.login);
+//socialtextRouter.route('/').get(router.login);
+app.get('*', router.login);
 
 // Server Configuration
 app.listen(port, function () {
