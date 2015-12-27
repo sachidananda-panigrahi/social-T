@@ -1,11 +1,11 @@
 'use strict';
-var app = angular.module('socialtextApp', ['ngRoute', 'ngResource', 'ngMessages', 'LocalStorageModule']);
+var app = angular.module('socialTextApp', ['ngRoute', 'ngResource', 'ngMessages', 'LocalStorageModule']);
 
 app.config(function ($routeProvider, $locationProvider, localStorageServiceProvider) {
 
 //    Storage
     localStorageServiceProvider
-        .setPrefix('socialtextApp')
+        .setPrefix('socialTextApp')
         .setStorageType('localStorage')
         .setNotify(true, true);
 //    Route

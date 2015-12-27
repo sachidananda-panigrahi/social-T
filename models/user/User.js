@@ -1,6 +1,6 @@
 ﻿// Dependencies
 var mongoose = require('mongoose');
-var CONSTANT = require('../utilities/Constant').CONSTANTS;
+var CONSTANT = require('../../utilities/Constant').CONSTANTS;
 
 // Model Definition
 var userSchema = new mongoose.Schema({

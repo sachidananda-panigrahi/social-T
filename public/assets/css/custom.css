@@ -16,6 +16,7 @@ body {
 .well.login-box {
     width:300px;
     margin:0 auto;
+    margin-top: calc(50% - 380px);
     /*display:none;*/
 }
 .well.login-box legend {
