@@ -1,7 +1,7 @@
 ﻿// Dependencies
-var mongoose = require('mongoose');
-var userModel = require('../../models/User');
-var Promise = require('promise');
+var mongoose = require('mongoose'),
+    userModel = require('../../models/user/User'),
+    Promise = require('promise');
 
 function UserController() {
 
@@ -9,7 +9,7 @@ function UserController() {
 
 UserController.prototype.getAllUsers = function (userId) {
     return new Promise(function (resolve, reject) {
-        userModel.find({status:'active',_id: {'$ne': userId }}).lean().exec(function (err, users) {
+        userModel.find({status: 'active', _id: {'$ne': userId}}).lean().exec(function (err, users) {
             if (err) {
                 console.log('Error fetching all users.');
                 reject(err);
@@ -22,7 +22,7 @@ UserController.prototype.getAllUsers = function (userId) {
 
 UserController.prototype.getUserById = function (userId) {
     return new Promise(function (resolve, reject) {
-        userModel.findOne({ _id: userId }).lean().exec(function (err, user) {
+        userModel.findOne({_id: userId}).lean().exec(function (err, user) {
             if (err) {
                 console.log('Error fetching user by Id.');
                 reject(err);
@@ -36,7 +36,7 @@ UserController.prototype.getUserById = function (userId) {
 
 UserController.prototype.getUserByName = function (userName) {
     return new Promise(function (resolve, reject) {
-        userModel.findOne({ username: userName, status: 'active' }).lean().exec(function (err, users) {
+        userModel.findOne({username: userName, status: 'active'}).lean().exec(function (err, users) {
             if (err) {
                 console.log('Error fetching user by Name.');
                 reject(err);
@@ -65,7 +65,7 @@ UserController.prototype.addUser = function (user) {
 
 UserController.prototype.editUserByName = function (username, user) {
     return new Promise(function (resolve, reject) {
-        userModel.update({ username: username }, user, { upsert: false }, function (err, numOfRows, users) {
+        userModel.update({username: username}, user, {upsert: false}, function (err, numOfRows, users) {
             if (err) {
                 console.log('Error while updating user.');
                 reject(err);
@@ -75,7 +75,7 @@ UserController.prototype.editUserByName = function (username, user) {
             }
         });
     });
-}; 
+};
 
 UserController.prototype.deleteUser = function (id) {
     return new Promise(function (resolve, reject) {
@@ -93,7 +93,7 @@ UserController.prototype.deleteUser = function (id) {
 
 UserController.prototype.editUser = function (id, User) {
     return new Promise(function (resolve, reject) {
-        userModel.update({ _id: id }, User, { upsert: false }, function (err, numOfRows, users) {
+        userModel.update({_id: id}, User, {upsert: false}, function (err, numOfRows, users) {
             if (err) {
                 console.log('Error while updating User.');
                 reject(err);
@@ -105,4 +105,4 @@ UserController.prototype.editUser = function (id, User) {
     });
 };
 
-module.exports = { 'UserController': new UserController() }
+module.exports = {'UserController': new UserController()}
