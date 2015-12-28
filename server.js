@@ -20,11 +20,11 @@ app.use(session({
 }));
 
 // Routers
-var socialtextRouter = express.Router();
+var socialTextRouter = express.Router();
 
 // Middleware
 var loggedIn = function (req, res, next) {
-    if (req.user) {
+    if (req.session.user) {
         next();
     } else {
         res.redirect('/login');
@@ -33,16 +33,16 @@ var loggedIn = function (req, res, next) {
 
 // URL
 app.get('/', router.home);
-socialtextRouter.route('/login')
+socialTextRouter.route('/login')
     .get(router.login)
     .post(router.loginUser);
-socialtextRouter.route('/user')
+socialTextRouter.route('/user')
     .get(loggedIn, router.user)
     .post(loggedIn, router.createUser);
-socialtextRouter.route('/doctor')
+socialTextRouter.route('/doctor')
     .get(loggedIn, router.doctor);
 
-app.use(socialtextRouter);
+app.use(socialTextRouter);
 app.all('*', loggedIn, function(req, res) {
     res.redirect("/user");
 });

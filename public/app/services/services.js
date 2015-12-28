@@ -1,70 +1,60 @@
+"use strict";
 app.service('InitService', ['$q', function ($q) {
     var d = $q.defer();
     return {
         defer: d,
         promise: d.promise
     };
-}]).service('$selectedAirport', function ($storeSearchAirports) {
-    this.selected = [];
-    this.counter = 0;
-    this.index = 0;
+    }]).service('$ServiceManager', function ($http, $q) {
+    var d = $q.defer();
+    this.method = null;
+    this.url = null;
+    this.data = null;
+    this.dataTypes = null;
+    this.header = null;
 
-    if ($storeSearchAirports.getSearchedList("searchedList") != null) {
-        this.selected = $storeSearchAirports.getSearchedList("searchedList");
-    }
-
-    this.setSelected = function (data) {
-        this.counter = 0;
-        this.index = 0;
-
-        if (this.selected.length == 0) {
-            this.selected.push(data);
-        } else {
-            for (var index = 0; index < this.selected.length; index++) {
-                for (var key in this.selected[index]) {
-                    if (data.hasOwnProperty(key)) {
-                        this.counter++;
-                        this.index = index;
-                        break
-                    }
-                }
-            }
-            if (this.counter) {
-                this.selected[this.index] = data;
-            } else {
-                this.selected.push(data);
-            }
+    //Setter
+    this.setURL = function (surl) {
+        if (surl) {
+            this.url = surl;
         }
     };
-    this.getSelected = function () {
-        return this.selected;
-    };
-}).service('$storeSearchAirports', function (localStorageService) {
-    this.searchedList = [];
-
-    this.setSearchedList = function (key, val) {
-        if (localStorageService.isSupported) {
-            localStorageService.set(key, val);
-        } else {
-
+    this.setData = function (sdata) {
+        if (sdata) {
+            this.data = JSON.stringify(sdata);
         }
     };
-    this.getSearchedList = function (key) {
-        if (localStorageService.isSupported) {
-            return localStorageService.get(key);
-        } else {
-
+    this.setMethod = function (smethod) {
+        if (smethod) {
+            this.method = smethod;
+        }
+    };
+    this.setDataType = function (sDataType) {
+        if (sDataType) {
+            this.dataTypes = sDataType;
+        }
+    };
+    this.setHeader = function (sheader) {
+        if (sheader) {
+            this.header = sheader;
         }
     };
 
+    this.doServiceCall = function () {
+        var req = {
+            method: this.method,
+            url: this.url,
+            headers: this.header,
+            data: this.data
+        };
 
-}).service('$getSearchedFlightDetails', function ($http, $q) {
-    var d = $q.defer(), config = {cache: false};
-    $http({method: 'GET', url: '/api/search', cache: false}).then(function(response) {
-        d.resolve(response);
-    }, function(response) {
-        d.reject(response);
-    });
+        $http(req).then(function (response) {
+            d.resolve(response);
+        }, function (response) {
+            d.reject(response);
+        });
 
-    return d.promise;
+        return d.promise;
+    };
+
 });
