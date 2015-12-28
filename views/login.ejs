@@ -23,24 +23,39 @@
 </head>
 <body>
 
-<div ng-view></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well login-box">
+                <form action="/login" method="POST" name="loginForm" novalidate>
+                    <legend>Login</legend>
+                    <div class="form-group">
+                        <label for="username-email">E-mail or Username</label>
+                        <input value='' id="username-email" placeholder="E-mail or Username" type="text"
+                               class="form-control" name="user" ng-model="user" required/>
 
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" value='' placeholder="Password" type="password" class="form-control"
+                               name="password" ng-model="password" required/>
 
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-danger btn-cancel-action">Cancel</button>
+                        <button type="submit" class="btn btn-success btn-login-submit" ng-click="onSubmit($event)">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <script src="assets/libs/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="assets/libs/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="assets/libs/bower_components/angular/angular.min.js"></script>
-<script src="assets/libs/bower_components/angular-route/angular-route.min.js"></script>
-<script src="assets/libs/bower_components/angular-resource/angular-resource.min.js"></script>
-<script src="assets/libs/bower_components/angular-messages/angular-messages.min.js"></script>
-<script src="assets/libs/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-<script src="app/app.js"></script>
-<script src="app/controllers/controllers.js"></script>
-<script src="app/services/services.js"></script>
-<!--
-<script src="app/filters/filters.js"></script>
-<script src="app/directives/directives.js"></script>
--->
 
 </body>
 </html>

@@ -10,10 +10,10 @@ function Routes() {
 // Home
 
 Routes.prototype.home = function (req, res) {
-    if (!req.user) {
+    if (!req.session.user) {
         res.redirect('/login');
     } else {
-        if (req.user.role.toLocaleLowerCase() == 'doctor') {
+        if (req.session.user.role.toLocaleLowerCase() == 'doctor') {
             res.redirect('/doctor');
         } else {
             res.redirect('/user');
@@ -26,11 +26,17 @@ Routes.prototype.login = function (req, res) {
 };
 
 Routes.prototype.loginUser = function (req, res) {
+    console.log(req.body);
     var user = req.body,
         userController = require('../controllers/user/UserController').UserController;
     userController.getUserByName(user.username).done(function (user) {
-        res.status(201);
-        res.send(user);
+        console.log(user);
+        if(req.body.username == user.username && req.body.password == user.password){
+            req.session.user = user;
+            res.status(201);
+            res.send(user);
+        }
+
     });
 };
 
@@ -53,7 +59,7 @@ Routes.prototype.createUser = function (req, res) {
 // Doctor
 
 Routes.prototype.doctor = function (req, res) {
-    res.render('user');
+    res.render('doctor');
 };
 // Exports
 module.exports = new Routes();
