@@ -22,7 +22,7 @@ Routes.prototype.home = function (req, res) {
 };
 // Login
 Routes.prototype.login = function (req, res) {
-    res.render('index');
+    res.render('login');
 };
 
 Routes.prototype.loginUser = function (req, res) {

@@ -6,6 +6,7 @@ var CONSTANT = require('../../utilities/Constant').CONSTANTS;
 var userSchema = new mongoose.Schema({
     username: String,
     password: String,
+    email: String,
     role: String,
     status: String,
     first_time_login: Number,

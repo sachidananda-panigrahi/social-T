@@ -8,7 +8,7 @@ gulp.task('default', function () {
         env: {
             PORT: 5000
         },
-        ignore: ['./node_modules/**','./public/**','./data/**']
+        ignore: ['./node_modules/**','./public/','./data/']
     })
         .on('restart', function () {
             console.log("Restarting");
