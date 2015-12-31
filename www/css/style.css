@@ -1,0 +1,7 @@
+/* Empty. Add your own CSS if you like */
+.st-tab_second .tab-item{
+  padding: 15px 0;
+}
+.st-tab_second .tab-item > span{
+  font-size: 150%;
+}
