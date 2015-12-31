@@ -1,52 +1,39 @@
-<ion-tabs class="tabs-striped tabs-icon-top tabs-top st-tab_second">
+<ion-view view-title="Patients">
+  <ion-tabs class="tabs-striped tabs-icon-top tabs-top st-tab_second">
+    <ion-tab title="Activity">
+      <ion-view view-title="Filter">
+        <ion-content>
+          <ion-list>
+            <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+              {{playlist.title}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
 
-  <ion-tab title="Shift">
-    <ion-view view-title="Filter">
-      <ion-content>
-        <ion-list>
-          <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-            {{playlist.title}}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-view>
-  </ion-tab>
+    <ion-tab title="Alphabetical">
+      <ion-view view-title="Filter">
+        <ion-content>
+          <ion-list>
+            <ion-item ng-repeat="playlist in playlists1" href="#/app/playlists/{{playlist.id}}">
+              {{playlist.title}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
 
-  <ion-tab title="Day">
-    <ion-view view-title="Filter">
-      <ion-content>
-        <ion-list>
-          <ion-item ng-repeat="playlist in playlists1" href="#/app/playlists/{{playlist.id}}">
-            {{playlist.title}}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-view>
-  </ion-tab>
-
-  <ion-tab title="Week">
-    <ion-view view-title="Filter">
-      <ion-content>
-        <ion-list>
-          <ion-item ng-repeat="playlist in playlists2" href="#/app/playlists/{{playlist.id}}">
-            {{playlist.title}}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-view>
-  </ion-tab>
-
-  <ion-tab title="All">
-    <ion-view view-title="Filter">
-      <ion-content>
-        <ion-list>
-          <ion-item ng-repeat="playlist in playlists3" href="#/app/playlists/{{playlist.id}}">
-            {{playlist.title}}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-view>
-  </ion-tab>
-
-</ion-tabs>
-
+    <ion-tab title="Room">
+      <ion-view view-title="Filter">
+        <ion-content>
+          <ion-list>
+            <ion-item ng-repeat="playlist in playlists2" href="#/app/playlists/{{playlist.id}}">
+              {{playlist.title}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+  </ion-tabs>
+</ion-view>
