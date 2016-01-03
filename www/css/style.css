@@ -5,3 +5,14 @@
 .st-tab_second .tab-item > span{
   font-size: 150%;
 }
+.patietnt-list__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.patietnt-list__container img, .patietnt-list__content{
+  align-self: center;
+}
+.patietnt-list__content{
+  padding-left: 15px;
+}
