@@ -10,6 +10,9 @@
   flex-direction: row;
   justify-content: flex-start;
 }
+.patietnt-list__container img{
+  border-radius: 50%;
+}
 .patietnt-list__container img, .patietnt-list__content{
   align-self: center;
 }
