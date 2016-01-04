@@ -42,32 +42,26 @@ angular.module('socialText.controllers', [])
     };
   })
 
-  .controller('PlaylistsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager) {
+  .controller('PlaylistsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $ionicLoading) {
 
-    $scope.allPatietnts = [];
+    $scope.patietnts = {};
 
     $ServiceManager.setURL(SOCIAL_TEXT_CONS.LOCAL + SOCIAL_TEXT_CONS.PORT + SOCIAL_TEXT_CONS.API.DATA);
     $ServiceManager.setMethod("GET");
     $ServiceManager.setHeader(SOCIAL_TEXT_CONS.HEADER);
-    $ServiceManager.doServiceCall().then(function (res) {
-      $scope.allPatietnts = res.data.data;
+
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
     });
 
-    $scope.playlists1 = [
-      {title: 'Reggae', id: 1},
-      {title: 'Chill', id: 2},
-      {title: 'Cowbell', id: 6}
-    ];
-    $scope.playlists2 = [
-      {title: 'Reggae', id: 1},
-      {title: 'Chill', id: 2}
-    ];
-    $scope.playlists3 = [
-      {title: 'Dubstep', id: 3},
-      {title: 'Indie', id: 4},
-      {title: 'Rap', id: 5},
-      {title: 'Cowbell', id: 6}
-    ];
+    $ServiceManager.doServiceCall().then(function (res) {
+      $scope.patietnts.all = res.data.data;
+      $scope.patietnts.new = res.data.data.slice(200,350);
+      $scope.patietnts.discharged = res.data.data.slice(10,190);
+      $ionicLoading.hide();
+    });
+
+
     $scope.toggleFilter = false;
 
   })

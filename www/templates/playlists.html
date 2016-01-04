@@ -4,8 +4,18 @@
       <ion-view view-title="Filter">
         <ion-content>
           <ion-list>
-            <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-              {{playlist.name}}
+            <ion-item ng-repeat="patietnt in patietnts.new" href="#/app/playlists/{{playlist.id}}">
+              <div class="patietnt-list__container">
+                <img src="../img/silhouette_48.png">
+
+                <div class="patietnt-list__content">
+                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
+
+                  <p>{{patietnt.MRN}}</p>
+
+                  <p>Room Number: {{patietnt.roomNumber}}</p>
+                </div>
+              </div>
             </ion-item>
           </ion-list>
         </ion-content>
@@ -16,8 +26,18 @@
       <ion-view view-title="Filter">
         <ion-content>
           <ion-list>
-            <ion-item ng-repeat="playlist in playlists1" href="#/app/playlists/{{playlist.id}}">
-              {{playlist.title}}
+            <ion-item ng-repeat="patietnt in patietnts.discharged" href="#/app/playlists/{{playlist.id}}">
+              <div class="patietnt-list__container">
+                <img src="../img/silhouette_48.png">
+
+                <div class="patietnt-list__content">
+                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
+
+                  <p>{{patietnt.MRN}}</p>
+
+                  <p>Room Number: {{patietnt.roomNumber}}</p>
+                </div>
+              </div>
             </ion-item>
           </ion-list>
         </ion-content>
@@ -28,12 +48,15 @@
       <ion-view view-title="Filter">
         <ion-content>
           <ion-list>
-            <ion-item ng-repeat="patietnt in allPatietnts" href="#/app/playlists/{{playlist.id}}">
+            <ion-item ng-repeat="patietnt in patietnts.all" href="#/app/playlists/{{playlist.id}}">
               <div class="patietnt-list__container">
                 <img src="../img/silhouette_48.png">
+
                 <div class="patietnt-list__content">
-                  <h2>{{patietnt.name}}  {{patietnt.age}}</h2>
+                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
+
                   <p>{{patietnt.MRN}}</p>
+
                   <p>Room Number: {{patietnt.roomNumber}}</p>
                 </div>
               </div>
