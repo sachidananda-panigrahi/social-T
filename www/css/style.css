@@ -5,15 +5,13 @@
   font-size: 150%;
 }
 div[class*='__container']{
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
-/*.patietnt-list__container{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}*/
+
 .patietnt-list__container img{
   border-radius: 50%;
 }
