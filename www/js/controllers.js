@@ -88,6 +88,7 @@ angular.module('socialText.controllers', [])
   .controller('PatientsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $ionicLoading) {
     // Declaration
     $scope.patietnts = {};
+    $scope.patietnts.face = "../img/silhouette_48.png";
 
 
     $ServiceManager.setURL(SOCIAL_TEXT_CONS.LOCAL + SOCIAL_TEXT_CONS.PORT + SOCIAL_TEXT_CONS.API.DATA);
