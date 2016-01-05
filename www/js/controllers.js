@@ -1,6 +1,69 @@
 angular.module('socialText.controllers', [])
 
-  .controller('DashCtrl', function ($scope) {
+  .controller('TabCtrl', function ($scope, $ionicTabsDelegate) {
+    $scope.goForward = function () {
+      var selected = $ionicTabsDelegate.selectedIndex();
+      if (selected != -1) {
+        $ionicTabsDelegate.select(selected + 1);
+      }
+    };
+
+    $scope.goBack = function () {
+      var selected = $ionicTabsDelegate.selectedIndex();
+      if (selected != -1 && selected != 0) {
+        $ionicTabsDelegate.select(selected - 1);
+      }
+    }
+  })
+
+  .controller('DashCtrl', function ($scope, $ionicLoading, $cordovaGeolocation) {
+    $scope.currentLocation = {};
+
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    $cordovaGeolocation
+      .getCurrentPosition(posOptions)
+      .then(function (position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        console.log("getCurrentPosition");
+        console.log(lat);
+        console.log(long);
+        console.log('getCurrentPosition ends');
+        $scope.currentLocation.lat = lat;
+        $scope.currentLocation.long = long;
+
+      }, function (err) {
+        // error
+      });
+
+
+    var watchOptions = {
+      timeout: 3000,
+      enableHighAccuracy: false // may cause errors if true
+    };
+
+    var watch = $cordovaGeolocation.watchPosition(watchOptions);
+    watch.then(
+      null,
+      function (err) {
+        // error
+      },
+      function (position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        console.log("watch");
+        console.log(lat);
+        console.log(long);
+        console.log('watch ends');
+        $scope.currentLocation.lat = lat;
+        $scope.currentLocation.long = long;
+        $ionicLoading.hide();
+      });
+
   })
 
   .controller('ChatsCtrl', function ($scope, Chats) {
@@ -23,8 +86,9 @@ angular.module('socialText.controllers', [])
   })
 
   .controller('PatientsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $ionicLoading) {
-
+    // Declaration
     $scope.patietnts = {};
+
 
     $ServiceManager.setURL(SOCIAL_TEXT_CONS.LOCAL + SOCIAL_TEXT_CONS.PORT + SOCIAL_TEXT_CONS.API.DATA);
     $ServiceManager.setMethod("GET");
@@ -40,9 +104,6 @@ angular.module('socialText.controllers', [])
       $scope.patietnts.discharged = res.data.data.slice(10, 190);
       $ionicLoading.hide();
     });
-
-
-    $scope.toggleFilter = false;
 
   })
   .controller('MoreCtrl', function ($scope, $ionicModal, $timeout) {
