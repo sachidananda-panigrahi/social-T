@@ -1,4 +1,4 @@
-app
+angular.module('socialText.constant', [])
   .constant("SOCIAL_TEXT_CONS", {
     "LOCAL": "http://54.172.105.158:",
     "PORT": 9000,

@@ -1,2 +1,0 @@
-# socialtext
-socialtext

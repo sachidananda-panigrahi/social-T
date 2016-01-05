@@ -1,15 +1,19 @@
-/* Empty. Add your own CSS if you like */
 .st-tab_second .tab-item{
   padding: 15px 0;
 }
 .st-tab_second .tab-item > span{
   font-size: 150%;
 }
-.patietnt-list__container{
+div[class*='__container']{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
+/*.patietnt-list__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}*/
 .patietnt-list__container img{
   border-radius: 50%;
 }
