@@ -34,6 +34,7 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
       // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',
+        abstract: true,
         controller: 'TabCtrl',
         templateUrl: 'templates/tabs.html'
       })
@@ -75,6 +76,16 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
           'tab-patients': {
             templateUrl: 'templates/tab-patients.html',
             controller: 'PatientsCtrl'
+          }
+        }
+      })
+
+      .state('tab.photo', {
+        url: '/photo',
+        views: {
+          'tab-more': {
+            templateUrl: 'templates/tab-add-photo.html',
+            controller: 'PhotoCtrl'
           }
         }
       })

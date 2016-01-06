@@ -91,7 +91,7 @@ angular.module('socialText.controllers', [])
     $scope.patietnts.face = "img/silhouette_48.png";
 
 
-    $ServiceManager.setURL(SOCIAL_TEXT_CONS.LOCAL + SOCIAL_TEXT_CONS.PORT + SOCIAL_TEXT_CONS.API.DATA);
+    $ServiceManager.setURL(SOCIAL_TEXT_CONS.LOCAL + SOCIAL_TEXT_CONS.PORT + SOCIAL_TEXT_CONS.API.DATA + SOCIAL_TEXT_CONS.PATIENTS_LIST);
     $ServiceManager.setMethod("GET");
     $ServiceManager.setHeader(SOCIAL_TEXT_CONS.HEADER);
 
@@ -104,6 +104,37 @@ angular.module('socialText.controllers', [])
       $scope.patietnts.new = res.data.data.slice(10, 30);
       $scope.patietnts.discharged = res.data.data.slice(31, 61);
       $ionicLoading.hide();
+    });
+
+  })
+  .controller('PhotoCtrl', function($scope, $ionicHistory, $cordovaCamera){
+
+    document.addEventListener("deviceready", function () {
+      $ionicHistory.clearHistory();
+
+      $scope.images = [];
+
+      $scope.upload = function() {
+        var options = {
+          quality : 75,
+          destinationType : Camera.DestinationType.DATA_URL,
+          sourceType : Camera.PictureSourceType.CAMERA,
+          allowEdit : true,
+          encodingType: Camera.EncodingType.JPEG,
+          popoverOptions: CameraPopoverOptions,
+          targetWidth: 500,
+          targetHeight: 500,
+          saveToPhotoAlbum: false
+        };
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+          syncArray.$add({image: imageData}).then(function() {
+            alert("Image has been uploaded");
+          });
+        }, function(error) {
+          console.error(error);
+        });
+      }
+
     });
 
   })

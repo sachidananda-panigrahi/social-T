@@ -7,5 +7,6 @@ angular.module('socialText.constant', [])
     },
     "API": {
       "DATA": "/api/data/"
-    }
+    },
+    PATIENTS_LIST: "/70"
   });
