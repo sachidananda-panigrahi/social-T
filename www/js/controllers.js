@@ -19,10 +19,10 @@ angular.module('socialText.controllers', [])
   .controller('DashCtrl', function ($scope, $ionicLoading, $cordovaGeolocation) {
     $scope.currentLocation = {};
 
-    /*$ionicLoading.show({
+    $ionicLoading.show({
       template: '<ion-spinner></ion-spinner>'
     });
-*/
+
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
@@ -61,7 +61,7 @@ angular.module('socialText.controllers', [])
         console.log('watch ends');
         $scope.currentLocation.lat = lat;
         $scope.currentLocation.long = long;
-        //$ionicLoading.hide();
+        $ionicLoading.hide();
       });
 
   })
