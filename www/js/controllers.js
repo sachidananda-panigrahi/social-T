@@ -100,9 +100,9 @@ angular.module('socialText.controllers', [])
     });
 
     $ServiceManager.doServiceCall().then(function (res) {
-      $scope.patietnts.all = res.data.data;
-      $scope.patietnts.new = res.data.data.slice(200, 350);
-      $scope.patietnts.discharged = res.data.data.slice(10, 190);
+      $scope.patietnts.all = res.data.data.slice(0, 30);
+      $scope.patietnts.new = res.data.data.slice(10, 30);
+      $scope.patietnts.discharged = res.data.data.slice(31, 61);
       $ionicLoading.hide();
     });
 
