@@ -124,12 +124,11 @@ angular.module('socialText.controllers', [])
           popoverOptions: CameraPopoverOptions,
           targetWidth: 500,
           targetHeight: 500,
-          saveToPhotoAlbum: false
+          saveToPhotoAlbum: true
         };
         $cordovaCamera.getPicture(options).then(function(imageData) {
-          syncArray.$add({image: imageData}).then(function() {
-            alert("Image has been uploaded");
-          });
+          var image = document.getElementById('myImage');
+          image.src = "data:image/jpeg;base64," + imageData;
         }, function(error) {
           console.error(error);
         });
