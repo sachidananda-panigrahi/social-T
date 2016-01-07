@@ -48,8 +48,8 @@
     <ion-tab title="All">
       <ion-view view-title="Filter">
         <ion-content>
-          <ion-list>
-            <ion-item ng-repeat="patietnt in patietnts.all" href="#/app/playlists/{{playlist.id}}">
+          <ion-list can-swipe="listCanSwipe">
+            <ion-item ng-repeat="patietnt in patietnts.all" item="patietnt" href="#/app/playlists/{{playlist.id}}">
               <div class="patietnt-list__container">
                 <img ng-src="{{patietnts.face}}">
 
@@ -59,6 +59,7 @@
                   <p>{{patietnt.MRN}}</p>
 
                   <p>Room {{patietnt.roomNumber}}</p>
+
                 </div>
               </div>
             </ion-item>

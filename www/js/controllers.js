@@ -49,7 +49,7 @@ angular.module('socialText.controllers', [])
     // Declaration
     $scope.patietnts = {};
     $scope.patietnts.face = "img/silhouette_48.png";
-
+    $scope.listCanSwipe = true;
 
     $ServiceManager.setURL(SOCIAL_TEXT_CONS.LOCAL + SOCIAL_TEXT_CONS.PORT + SOCIAL_TEXT_CONS.API.DATA + SOCIAL_TEXT_CONS.PATIENTS_LIST);
     $ServiceManager.setMethod("GET");
@@ -58,9 +58,9 @@ angular.module('socialText.controllers', [])
     $loader.show();
 
     $ServiceManager.doServiceCall().then(function (res) {
+      $scope.patietnts.new = res.data.data.slice(0, 15);
+      $scope.patietnts.discharged = res.data.data.slice(16, 30);
       $scope.patietnts.all = res.data.data.slice(0, 30);
-      $scope.patietnts.new = res.data.data.slice(10, 30);
-      $scope.patietnts.discharged = res.data.data.slice(31, 61);
       $loader.hide();
     });
 
@@ -71,7 +71,7 @@ angular.module('socialText.controllers', [])
       $getPicture.get().then(function(res){
         $scope.images.push(res);
       })
-    }
+    };
   })
   .controller('MoreCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
