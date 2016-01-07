@@ -1,15 +1,13 @@
 <ion-view title="My Images" ng-init="">
   <ion-nav-back-button></ion-nav-back-button>
   <ion-nav-buttons side="right">
-    <button class="button button-icon icon ion-camera" ng-click="upload()"></button>
+    <button class="button button-icon icon ion-camera" ng-click="takePicture()"></button>
   </ion-nav-buttons>
   <ion-content>
     <div class="row">
-      <div class="col col-25">
-        <!--<img ng-src="data:image/jpeg;base64,{{images[$index].image}}" width="100%" />-->
-        <img id="myImage" width="100%" />
+      <div class="col col-100" ng-repeat="image in images">
+        <img ng-src="data:image/jpeg;base64,{{image}}" id="myImage" width="100%" />
       </div>
-
     </div>
   </ion-content>
 </ion-view>

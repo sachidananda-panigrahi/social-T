@@ -16,53 +16,13 @@ angular.module('socialText.controllers', [])
     }
   })
 
-  .controller('DashCtrl', function ($scope, $ionicLoading, $cordovaGeolocation) {
+  .controller('DashCtrl', function ($scope, $getCurrentPosition) {
     $scope.currentLocation = {};
 
-    $ionicLoading.show({
-      template: '<ion-spinner></ion-spinner>'
+    $getCurrentPosition.get().then(function(res){
+      $scope.currentLocation.lat = res.lat;
+      $scope.currentLocation.long = res.long;
     });
-
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
-    $cordovaGeolocation
-      .getCurrentPosition(posOptions)
-      .then(function (position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        console.log("getCurrentPosition");
-        console.log(lat);
-        console.log(long);
-        console.log('getCurrentPosition ends');
-        $scope.currentLocation.lat = lat;
-        $scope.currentLocation.long = long;
-
-      }, function (err) {
-        // error
-      });
-
-
-    var watchOptions = {
-      timeout: 3000,
-      enableHighAccuracy: false // may cause errors if true
-    };
-
-    var watch = $cordovaGeolocation.watchPosition(watchOptions);
-    watch.then(
-      null,
-      function (err) {
-        // error
-      },
-      function (position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        console.log("watch");
-        console.log(lat);
-        console.log(long);
-        console.log('watch ends');
-        $scope.currentLocation.lat = lat;
-        $scope.currentLocation.long = long;
-        $ionicLoading.hide();
-      });
 
   })
 
@@ -85,7 +45,7 @@ angular.module('socialText.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('PatientsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $ionicLoading) {
+  .controller('PatientsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $loader) {
     // Declaration
     $scope.patietnts = {};
     $scope.patietnts.face = "img/silhouette_48.png";
@@ -95,47 +55,23 @@ angular.module('socialText.controllers', [])
     $ServiceManager.setMethod("GET");
     $ServiceManager.setHeader(SOCIAL_TEXT_CONS.HEADER);
 
-    $ionicLoading.show({
-      template: '<ion-spinner></ion-spinner>'
-    });
+    $loader.show();
 
     $ServiceManager.doServiceCall().then(function (res) {
       $scope.patietnts.all = res.data.data.slice(0, 30);
       $scope.patietnts.new = res.data.data.slice(10, 30);
       $scope.patietnts.discharged = res.data.data.slice(31, 61);
-      $ionicLoading.hide();
+      $loader.hide();
     });
 
   })
-  .controller('PhotoCtrl', function($scope, $ionicHistory, $cordovaCamera){
-
-    document.addEventListener("deviceready", function () {
-      $ionicHistory.clearHistory();
-
-      $scope.images = [];
-
-      $scope.upload = function() {
-        var options = {
-          quality : 75,
-          destinationType : Camera.DestinationType.DATA_URL,
-          sourceType : Camera.PictureSourceType.CAMERA,
-          allowEdit : true,
-          encodingType: Camera.EncodingType.JPEG,
-          popoverOptions: CameraPopoverOptions,
-          targetWidth: 500,
-          targetHeight: 500,
-          saveToPhotoAlbum: true
-        };
-        $cordovaCamera.getPicture(options).then(function(imageData) {
-          var image = document.getElementById('myImage');
-          image.src = "data:image/jpeg;base64," + imageData;
-        }, function(error) {
-          console.error(error);
-        });
-      }
-
-    });
-
+  .controller('PhotoCtrl', function($scope, $getPicture){
+    $scope.images = [];
+    $scope.takePicture = function(){
+      $getPicture.get().then(function(res){
+        $scope.images.push(res);
+      })
+    }
   })
   .controller('MoreCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
