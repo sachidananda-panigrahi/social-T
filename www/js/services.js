@@ -74,7 +74,7 @@ angular.module('socialText.services', [])
 
     this.get = function () {
       $loader.show();
-      //document.addEventListener("deviceready", function () {
+      document.addEventListener("deviceready", function () {
       var posOptions = {timeout: 10000, enableHighAccuracy: false};
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
@@ -88,7 +88,7 @@ angular.module('socialText.services', [])
           console.log(err);
           d.reject(err);
         });
-      //});
+      });
       return d.promise;
     };
   }])
@@ -98,7 +98,7 @@ angular.module('socialText.services', [])
 
     this.get = function () {
       $loader.show();
-      //document.addEventListener("deviceready", function () {
+      document.addEventListener("deviceready", function () {
       var watchOptions = {
         timeout: 3000,
         enableHighAccuracy: false // may cause errors if true
@@ -114,7 +114,7 @@ angular.module('socialText.services', [])
         console.log(err);
         d.reject(err);
       });
-      //});
+      });
       return d.promise;
     };
   }])
