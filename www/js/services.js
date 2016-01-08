@@ -126,19 +126,13 @@ angular.module('socialText.services', [])
       document.addEventListener("deviceready", function () {
         $ionicHistory.clearHistory();
         var options = {
-          quality: 75,
-          destinationType: Camera.DestinationType.DATA_URL,
-          sourceType: Camera.PictureSourceType.CAMERA,
-          allowEdit: true,
-          encodingType: Camera.EncodingType.JPEG,
-          popoverOptions: CameraPopoverOptions,
-          targetWidth: 500,
-          targetHeight: 500,
-          saveToPhotoAlbum: true
+          destinationType: Camera.DestinationType.FILE_URI,
+          sourceType: Camera.PictureSourceType.CAMERA
         };
 
         $cordovaCamera.getPicture(options).then(function (imageData) {
-          d.resolve(imageData)
+          d.resolve(imageData);
+
         }, function (error) {
           console.error(error);
           d.reject(error);

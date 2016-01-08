@@ -66,10 +66,10 @@ angular.module('socialText.controllers', [])
 
   })
   .controller('PhotoCtrl', function($scope, $getPicture){
-    $scope.images = [];
+    $scope.images = {};
     $scope.takePicture = function(){
       $getPicture.get().then(function(res){
-        $scope.images.push(res);
+        $scope.images.profile = res;
       })
     };
   })
