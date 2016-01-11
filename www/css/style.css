@@ -21,3 +21,12 @@ div[class*='__container']{
 .patietnt-list__content{
   padding-left: 15px;
 }
+.bar.bar-royal {
+  border-color: #3A5EAA;
+  background-color: #3A5EAA;
+  background-image: linear-gradient(0deg, #3A5EAA, #3A5EAA 50%, transparent 50%);
+  color: #fff;
+}
+.pane, .view{
+  background: #D4D2D3;
+}

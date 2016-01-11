@@ -75,19 +75,19 @@ angular.module('socialText.services', [])
     this.get = function () {
       $loader.show();
       document.addEventListener("deviceready", function () {
-      var posOptions = {timeout: 10000, enableHighAccuracy: false};
-      $cordovaGeolocation
-        .getCurrentPosition(posOptions)
-        .then(function (position) {
-          currentLocation.lat = position.coords.latitude;
-          currentLocation.long = position.coords.longitude;
-          d.resolve(currentLocation);
-          $loader.hide();
-        }, function (err) {
-          // error
-          console.log(err);
-          d.reject(err);
-        });
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function (position) {
+            currentLocation.lat = position.coords.latitude;
+            currentLocation.long = position.coords.longitude;
+            d.resolve(currentLocation);
+            $loader.hide();
+          }, function (err) {
+            // error
+            console.log(err);
+            d.reject(err);
+          });
       });
       return d.promise;
     };
@@ -99,21 +99,21 @@ angular.module('socialText.services', [])
     this.get = function () {
       $loader.show();
       document.addEventListener("deviceready", function () {
-      var watchOptions = {
-        timeout: 3000,
-        enableHighAccuracy: false // may cause errors if true
-      };
-      var watch = $cordovaGeolocation.watchPosition(watchOptions);
-      watch.then(function (position) {
-        currentLocation.lat = position.coords.latitude;
-        currentLocation.long = position.coords.longitude;
-        d.resolve(currentLocation);
-        $loader.hide();
-      }, function (err) {
-        // error
-        console.log(err);
-        d.reject(err);
-      });
+        var watchOptions = {
+          timeout: 3000,
+          enableHighAccuracy: false // may cause errors if true
+        };
+        var watch = $cordovaGeolocation.watchPosition(watchOptions);
+        watch.then(function (position) {
+          currentLocation.lat = position.coords.latitude;
+          currentLocation.long = position.coords.longitude;
+          d.resolve(currentLocation);
+          $loader.hide();
+        }, function (err) {
+          // error
+          console.log(err);
+          d.reject(err);
+        });
       });
       return d.promise;
     };

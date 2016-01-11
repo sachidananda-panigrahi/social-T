@@ -45,7 +45,7 @@ angular.module('socialText.controllers', [])
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
-  .controller('PatientsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $loader) {
+  .controller('PatientsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $loader, $ionicModal, $timeout) {
     // Declaration
     $scope.patietnts = {};
     $scope.patietnts.face = "img/silhouette_48.png";
@@ -64,16 +64,6 @@ angular.module('socialText.controllers', [])
       $loader.hide();
     });
 
-  })
-  .controller('PhotoCtrl', function($scope, $getPicture){
-    $scope.images = {};
-    $scope.takePicture = function(){
-      $getPicture.get().then(function(res){
-        $scope.images.profile = res;
-      })
-    };
-  })
-  .controller('MoreCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -101,7 +91,21 @@ angular.module('socialText.controllers', [])
       // Simulate a login delay. Remove this and replace with your login
       // code if using a login system
       $timeout(function () {
-        $scope.closeLogin();
-      }, 1000);
+        $scope.login();
+      }, 100);
     };
+    $timeout(function () {
+      $scope.login();
+    }, 0);
+  })
+  .controller('PhotoCtrl', function($scope, $getPicture){
+    $scope.images = {};
+    $scope.takePicture = function(){
+      $getPicture.get().then(function(res){
+        $scope.images.profile = res;
+      })
+    };
+  })
+  .controller('MoreCtrl', function ($scope) {
+
   });

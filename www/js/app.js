@@ -27,7 +27,7 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
 
     $ionicConfigProvider.tabs.position("bottom");
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-    
+
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
@@ -41,9 +41,7 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
         controller: 'TabCtrl',
         templateUrl: 'templates/tabs.html'
       })
-
       // Each tab has its own nav history stack:
-
       .state('tab.dash', {
         url: '/dash',
         views: {
@@ -53,7 +51,6 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
           }
         }
       })
-
       .state('tab.chats', {
         url: '/chats',
         views: {
@@ -72,7 +69,6 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
           }
         }
       })
-
       .state('tab.patients', {
         url: '/patients',
         views: {
@@ -82,7 +78,6 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
           }
         }
       })
-
       .state('tab.photo', {
         url: '/photo',
         views: {
@@ -92,7 +87,6 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
           }
         }
       })
-
       .state('tab.more', {
         url: '/more',
         views: {
@@ -104,6 +98,6 @@ angular.module('socialText', ['ionic', 'ngCordova', 'socialText.controllers', 's
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/tab/patients');
 
   });
