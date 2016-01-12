@@ -1,3 +1,3 @@
 module.exports = {
-    apiUrl: "https://api.everlive.com/v1/GWfRtXi1Lwt4jcqK/"
+    apiUrl: "http://54.172.105.158:9000/api/data/"
 };
