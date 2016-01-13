@@ -1,10 +1,20 @@
 <Page loaded="loaded">
+    <ActionBar title="SocialText">
+        <android>
+            <NavigationButton icon="res://ic_menu" tap="showSlideout" />
+        </android>
+        <ActionBar.actionItems>
+            <ios>
+                <ActionItem icon="res://ic_menu" ios.position="left" tap="showSideDrawer" />
+            </ios>
+        </ActionBar.actionItems>
+    </ActionBar>
     <TabView>
         <TabView.items>
             <TabViewItem title="new" cssClass="title">
                 <TabViewItem.view>
                     <GridLayout>
-                        <ListView items="{{ newPatients }}">
+                        <ListView items="{{ newPatients }}" id="newPatients">
                             <!--Describing how the element will look like-->
                             <ListView.itemTemplate>
                                 <GridLayout rows="auto,auto, auto" columns="auto,auto, auto" paddingTop="3"
@@ -24,13 +34,14 @@
                                 </GridLayout>
                             </ListView.itemTemplate>
                         </ListView>
+                        <ActivityIndicator busy="{{ isLoading }}" rowSpan="2" colSpan="2" width="50" height="50"/>
                     </GridLayout>
                 </TabViewItem.view>
             </TabViewItem>
             <TabViewItem title="Discharged" cssClass="title">
                 <TabViewItem.view>
                     <GridLayout>
-                        <ListView items="{{ dischargedPatients }}">
+                        <ListView items="{{ dischargedPatients }}" id="dischargedPatients">
                             <!--Describing how the element will look like-->
                             <ListView.itemTemplate>
                                 <GridLayout rows="auto,auto, auto" columns="auto,auto, auto" paddingTop="3"
@@ -50,13 +61,14 @@
                                 </GridLayout>
                             </ListView.itemTemplate>
                         </ListView>
+                        <ActivityIndicator busy="{{ isLoading }}" rowSpan="2" colSpan="2" width="50" height="50"/>
                     </GridLayout>
                 </TabViewItem.view>
             </TabViewItem>
             <TabViewItem title="All" cssClass="title">
                 <TabViewItem.view>
                     <GridLayout>
-                        <ListView items="{{ allPatients }}">
+                        <ListView items="{{ allPatients }}" id="allPatients">
                             <!--Describing how the element will look like-->
                             <ListView.itemTemplate>
                                 <GridLayout rows="auto,auto, auto" columns="auto,auto, auto" paddingTop="3"
@@ -76,6 +88,7 @@
                                 </GridLayout>
                             </ListView.itemTemplate>
                         </ListView>
+                        <ActivityIndicator busy="{{ isLoading }}" rowSpan="2" colSpan="2" width="50" height="50"/>
                     </GridLayout>
                 </TabViewItem.view>
             </TabViewItem>

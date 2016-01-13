@@ -18,12 +18,3 @@ Button {
     margin: 10;
     padding: 10;
 }
-
-.title{
-    font-size: 10px;
-}
-.roundedImage{
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-}

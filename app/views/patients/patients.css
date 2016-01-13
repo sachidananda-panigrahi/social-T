@@ -1,5 +1,6 @@
 ListView {
     margin: 5;
+    opacity: 0;
 }
 Label {
     margin: 10;
@@ -11,17 +12,25 @@ TextField {
     border-style: solid;
     border-color: #034793;
 }
+TabViewItem title{
+    font-size: 10;
+}
 Image {
     margin: 10;
 }
 .room{
-    margin-top: 20px;
+    margin-top: 20;
 }
 .title{
-    font-size: 10px;
+    font-size: 10;
 }
 .roundedImage{
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
+}
+
+ActionBar {
+    background-color:  #3A5EAA;
+    color: white;
 }
