@@ -10,20 +10,18 @@ function patients() {
 }
 
 patients.prototype.getPatientList = function () {
-    return fetchModule.fetch(config.apiUrl, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(handleErrors)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            this.patientList = data;
-            return this.patients;
-        });
+    var promiseModule = new Promise(function(resolve, reject){
+        fetchModule.fetch(config.apiUrl)
+            .then(handleErrors)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                resolve(data);
+            });
+    });
+
+    return promiseModule;
 };
 
 function handleErrors(response) {

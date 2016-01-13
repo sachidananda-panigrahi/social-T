@@ -1,9 +1,85 @@
 <Page loaded="loaded">
-    <GridLayout>
-        <ListView items="{{ patientList }}">
-            <ListView.itemTemplate>
-                <Label text="{{ name }}" horizontalAlignment="left" verticalAlignment="center"/>
-            </ListView.itemTemplate>
-        </ListView>
-    </GridLayout>
+    <TabView>
+        <TabView.items>
+            <TabViewItem title="new" cssClass="title">
+                <TabViewItem.view>
+                    <GridLayout>
+                        <ListView items="{{ newPatients }}">
+                            <!--Describing how the element will look like-->
+                            <ListView.itemTemplate>
+                                <GridLayout rows="auto,auto, auto" columns="auto,auto, auto" paddingTop="3"
+                                            paddingBottom="3">
+                                    <Image src="~/images/patient.png" row="0" col="0" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2" width="50" height="50" cssClass="roundedImage"/>
+                                    <Label text="{{ name }}" row="0" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ age }}" row="0" col="2" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ MRN }}" row="1" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="Room: " row="2" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ roomNumber }}" row="2" col="2" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </GridLayout>
+                </TabViewItem.view>
+            </TabViewItem>
+            <TabViewItem title="Discharged" cssClass="title">
+                <TabViewItem.view>
+                    <GridLayout>
+                        <ListView items="{{ dischargedPatients }}">
+                            <!--Describing how the element will look like-->
+                            <ListView.itemTemplate>
+                                <GridLayout rows="auto,auto, auto" columns="auto,auto, auto" paddingTop="3"
+                                            paddingBottom="3">
+                                    <Image src="~/images/patient.png" row="0" col="0" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2" width="50" height="50" cssClass="roundedImage"/>
+                                    <Label text="{{ name }}" row="0" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ age }}" row="0" col="2" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ MRN }}" row="1" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="Room: " row="2" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ roomNumber }}" row="2" col="2" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </GridLayout>
+                </TabViewItem.view>
+            </TabViewItem>
+            <TabViewItem title="All" cssClass="title">
+                <TabViewItem.view>
+                    <GridLayout>
+                        <ListView items="{{ allPatients }}">
+                            <!--Describing how the element will look like-->
+                            <ListView.itemTemplate>
+                                <GridLayout rows="auto,auto, auto" columns="auto,auto, auto" paddingTop="3"
+                                            paddingBottom="3">
+                                    <Image src="~/images/patient.png" row="0" col="0" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2" width="50" height="50" cssClass="roundedImage"/>
+                                    <Label text="{{ name }}" row="0" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ age }}" row="0" col="2" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ MRN }}" row="1" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="Room: " row="2" col="1" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                    <Label text="{{ roomNumber }}" row="2" col="2" colSpan="1" rowSpan="1" margin="0"
+                                           padding="2"/>
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </GridLayout>
+                </TabViewItem.view>
+            </TabViewItem>
+        </TabView.items>
+    </TabView>
+
 </Page>
