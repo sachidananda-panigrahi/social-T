@@ -9,9 +9,9 @@ function patients() {
 
 }
 
-patients.prototype.getPatientList = function () {
+patients.prototype.getPatientList = function (params) {
     var promiseModule = new Promise(function(resolve, reject){
-        fetchModule.fetch(config.apiUrl)
+        fetchModule.fetch(config.apiUrl+params.data)
             .then(handleErrors)
             .then(function(response) {
                 return response.json();

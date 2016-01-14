@@ -13,8 +13,21 @@ Image {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 80;
+    overflow: hidden;
+}
+Border{
+    overflow: hidden;
 }
 Button {
     margin: 10;
     padding: 10;
+}
+
+ActionBar {
+    background-color:  #3A5EAA;
+    color: white;
+}
+
+.drawerMenuContent,.drawerContent{
+    background-color: #FFFFFF;
 }

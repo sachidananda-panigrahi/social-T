@@ -1,0 +1,39 @@
+<Page loaded="loaded" xmlns:drawer="nativescript-telerik-ui/sidedrawer" xmlns="http://www.nativescript.org/tns.xsd">
+    <ActionBar title="Patients">
+        <android>
+            <NavigationButton icon="res://ic_menu" tap="showSideDrawer"/>
+        </android>
+        <ActionBar.actionItems>
+            <ios>
+                <ActionItem icon="res://ic_menu" ios.position="left" tap="showSideDrawer"/>
+            </ios>
+        </ActionBar.actionItems>
+    </ActionBar>
+    <drawer:RadSideDrawer id="sideDrawer"
+                          drawerClosed="onDrawerClosed"
+                          drawerClosing="onDrawerClosing"
+                          drawerOpened="onDrawerOpened"
+                          drawerOpening="onDrawerOpening">
+        <drawer:RadSideDrawer.mainContent>
+            <StackLayout>
+
+            </StackLayout>
+        </drawer:RadSideDrawer.mainContent>
+        <drawer:RadSideDrawer.drawerContent>
+            <StackLayout cssClass="drawerContent">
+                <StackLayout cssClass="headerContent">
+                    <!--<Label text="SocialText" padding="10" margin="10"/>-->
+                </StackLayout>
+                <StackLayout cssClass="drawerMenuContent">
+                    <!--<Border borderWidth="1" borderColor="#dadada"></Border>-->
+                    <Label text="Home" margin="10" tap="home"/>
+                    <Border borderWidth="1" borderColor="#dadada"></Border>
+                    <Label text="Patients" margin="10" tap="patients"/>
+                    <Border borderWidth="1" borderColor="#dadada"></Border>
+                    <Label text="Device" margin="10" tap="device"/>
+                    <Border borderWidth="1" borderColor="#dadada"></Border>
+                </StackLayout>
+            </StackLayout>
+        </drawer:RadSideDrawer.drawerContent>
+    </drawer:RadSideDrawer>
+</Page>

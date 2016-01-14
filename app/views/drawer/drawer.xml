@@ -1,20 +1,40 @@
 <Page loaded="pageLoaded" xmlns:drawer="nativescript-telerik-ui/sidedrawer" xmlns="http://www.nativescript.org/tns.xsd">
-    <drawer:RadSideDrawer>
+    <ActionBar title="SocialText">
+        <android>
+            <NavigationButton icon="res://ic_menu" tap="showSideDrawer"/>
+        </android>
+        <ActionBar.actionItems>
+            <ios>
+                <ActionItem icon="res://ic_menu" ios.position="left" tap="showSideDrawer"/>
+            </ios>
+        </ActionBar.actionItems>
+    </ActionBar>
+    <drawer:RadSideDrawer id="sideDrawer"
+                          drawerClosed="onDrawerClosed"
+                          drawerClosing="onDrawerClosing"
+                          drawerOpened="onDrawerOpened"
+                          drawerOpening="onDrawerOpening">
         <drawer:RadSideDrawer.mainContent>
-            <StackLayout >
-                <Label text="{{ mainContentText }}" textWrap="true"/>
+            <StackLayout>
+                <Label text="Drawer notification: "/>
+                <Label text=""/>
             </StackLayout>
         </drawer:RadSideDrawer.mainContent>
         <drawer:RadSideDrawer.drawerContent>
             <StackLayout cssClass="drawerContent">
                 <StackLayout cssClass="headerContent">
-                    <Label text="Header"/>
+                    <!--<Label text="Header" padding="10"/>-->
                 </StackLayout>
                 <StackLayout cssClass="drawerMenuContent">
-                    <Label text="Item 1"/>
-                    <Label text="Item 2"/>
-                    <Label text="Item 3"/>
-                    <Label text="Item 4"/>
+                    <!--<Border borderWidth="1" borderColor="#dadada"></Border>-->
+                    <ListView items="{{ menuOption }}" id="menuOption" itemTap="listViewItemTap">
+                        <ListView.itemTemplate>
+                            <GridLayout>
+                                <Label text="{{ name }}" margin="10"/>
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                    <Border borderWidth="1" borderColor="#dadada"></Border>
                 </StackLayout>
             </StackLayout>
         </drawer:RadSideDrawer.drawerContent>
