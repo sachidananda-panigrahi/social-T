@@ -48,6 +48,7 @@ angular.module('socialText.controllers', [])
   .controller('PatientsCtrl', function ($scope, $document, SOCIAL_TEXT_CONS, $ServiceManager, $loader, $ionicModal, $timeout) {
     // Declaration
     $scope.patietnts = {};
+    $scope.patietnts.all = [];
     $scope.patietnts.face = "img/silhouette_48.png";
     $scope.listCanSwipe = true;
 
@@ -55,14 +56,28 @@ angular.module('socialText.controllers', [])
     $ServiceManager.setMethod("GET");
     $ServiceManager.setHeader(SOCIAL_TEXT_CONS.HEADER);
 
-    $loader.show();
-
+    //$loader.show();
     $ServiceManager.doServiceCall().then(function (res) {
-      $scope.patietnts.new = res.data.data.slice(0, 15);
-      $scope.patietnts.discharged = res.data.data.slice(16, 30);
-      $scope.patietnts.all = res.data.data.slice(0, 30);
-      $loader.hide();
+      $scope.patietnts.all = res.data.data;
+      //$loader.hide();
     });
+
+    $scope.noMoreItemsAvailable = false;
+    $scope.loadMore = function() {
+      //$loader.show();
+      $ServiceManager.doServiceCall().then(function (res) {
+        $scope.patietnts.all = $scope.patietnts.all.concat(res.data.data);
+        if ( $scope.patietnts.all.length > 1000 ) {
+          $scope.noMoreItemsAvailable = true;
+        }
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        //$loader.hide();
+      });
+    };
+    $scope.patietnts.all = [];
+    /*$scope.$on('$stateChangeSuccess', function() {
+      $scope.loadMore();
+    });*/
 
     // Form data for the login modal
     $scope.loginData = {};
@@ -94,9 +109,9 @@ angular.module('socialText.controllers', [])
         $scope.login();
       }, 100);
     };
-    $timeout(function () {
+   /* $timeout(function () {
       $scope.login();
-    }, 0);
+    }, 0);*/
   })
   .controller('PhotoCtrl', function($scope, $getPicture){
     $scope.images = {};

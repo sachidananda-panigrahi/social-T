@@ -1,5 +1,7 @@
 <ion-view title="My Images" ng-init="">
-  <ion-nav-back-button></ion-nav-back-button>
+  <ion-nav-back-button native-transitions native-transitions-options="{type: 'slide', direction:'left'}" class="button-icon">
+    <i class="icon ion-arrow-left-c"></i>
+  </ion-nav-back-button>
   <ion-nav-buttons side="right">
     <button class="button button-icon icon ion-camera" ng-click="takePicture()"></button>
   </ion-nav-buttons>

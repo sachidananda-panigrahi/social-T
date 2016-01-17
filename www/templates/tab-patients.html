@@ -1,71 +1,21 @@
-
 <ion-view view-title="Patients">
-  <ion-tabs class="tabs-striped tabs-icon-top tabs-top st-tab_second">
-    <ion-tab title="New">
-      <ion-view view-title="Filter">
-        <ion-content>
-          <ion-list>
-            <ion-item ng-repeat="patietnt in patietnts.new" href="#/app/playlists/{{playlist.id}}">
-              <div class="patietnt-list__container">
-                <img ng-src="{{patietnts.face}}">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="patietnt in patietnts.all track by $index" item="item" href="#/app/playlists/{{playlist.id}}">
+        <div class="patietnt-list__container">
+          <img ng-src="{{patietnts.face}}">
 
-                <div class="patietnt-list__content">
-                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
+          <div class="patietnt-list__content">
+            <h2>{{patietnt.name}} {{patietnt.age}}</h2>
 
-                  <p>{{patietnt.MRN}}</p>
+            <p>{{patietnt.MRN}}</p>
 
-                  <p>Room {{patietnt.roomNumber}}</p>
-                </div>
-              </div>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ion-view>
-    </ion-tab>
+            <p>Room {{patietnt.roomNumber}}</p>
 
-    <ion-tab title="Discharged">
-      <ion-view view-title="Filter">
-        <ion-content>
-          <ion-list>
-            <ion-item ng-repeat="patietnt in patietnts.discharged" href="#/app/playlists/{{playlist.id}}">
-              <div class="patietnt-list__container">
-                <img ng-src="{{patietnts.face}}">
-
-                <div class="patietnt-list__content">
-                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
-
-                  <p>{{patietnt.MRN}}</p>
-
-                  <p>Room {{patietnt.roomNumber}}</p>
-                </div>
-              </div>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ion-view>
-    </ion-tab>
-
-    <ion-tab title="All">
-      <ion-view view-title="Filter">
-        <ion-content>
-          <ion-list can-swipe="listCanSwipe">
-            <ion-item ng-repeat="patietnt in patietnts.all" item="patietnt" href="#/app/playlists/{{playlist.id}}">
-              <div class="patietnt-list__container">
-                <img ng-src="{{patietnts.face}}">
-
-                <div class="patietnt-list__content">
-                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
-
-                  <p>{{patietnt.MRN}}</p>
-
-                  <p>Room {{patietnt.roomNumber}}</p>
-
-                </div>
-              </div>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ion-view>
-    </ion-tab>
-  </ion-tabs>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="4%"></ion-infinite-scroll>
+  </ion-content>
 </ion-view>

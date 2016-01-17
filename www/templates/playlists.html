@@ -1,69 +1,23 @@
 <ion-view view-title="Patients">
-  <ion-tabs class="tabs-striped tabs-icon-top tabs-top st-tab_second">
-    <ion-tab title="New">
-      <ion-view view-title="Filter">
-        <ion-content>
-          <ion-list>
-            <ion-item ng-repeat="patietnt in patietnts.new" href="#/app/playlists/{{playlist.id}}">
-              <div class="patietnt-list__container">
-                <img src="../img/silhouette_48.png">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="patietnt in patietnts.all" href="#/app/playlists/{{playlist.id}}">
+        <div class="patietnt-list__container">
+          <img src="../img/silhouette_48.png">
 
-                <div class="patietnt-list__content">
-                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
+          <div class="patietnt-list__content">
+            <h2>{{patietnt.name}} {{patietnt.age}}</h2>
 
-                  <p>{{patietnt.MRN}}</p>
+            <p>{{patietnt.MRN}}</p>
 
-                  <p>Room Number: {{patietnt.roomNumber}}</p>
-                </div>
-              </div>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ion-view>
-    </ion-tab>
-
-    <ion-tab title="Discharged">
-      <ion-view view-title="Filter">
-        <ion-content>
-          <ion-list>
-            <ion-item ng-repeat="patietnt in patietnts.discharged" href="#/app/playlists/{{playlist.id}}">
-              <div class="patietnt-list__container">
-                <img src="../img/silhouette_48.png">
-
-                <div class="patietnt-list__content">
-                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
-
-                  <p>{{patietnt.MRN}}</p>
-
-                  <p>Room Number: {{patietnt.roomNumber}}</p>
-                </div>
-              </div>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ion-view>
-    </ion-tab>
-
-    <ion-tab title="All">
-      <ion-view view-title="Filter">
-        <ion-content>
-          <ion-list>
-            <ion-item ng-repeat="patietnt in patietnts.all" href="#/app/playlists/{{playlist.id}}">
-              <div class="patietnt-list__container">
-                <img src="../img/silhouette_48.png">
-
-                <div class="patietnt-list__content">
-                  <h2>{{patietnt.name}} {{patietnt.age}}</h2>
-
-                  <p>{{patietnt.MRN}}</p>
-
-                  <p>Room Number: {{patietnt.roomNumber}}</p>
-                </div>
-              </div>
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ion-view>
-    </ion-tab>
-  </ion-tabs>
+            <p>Room Number: {{patietnt.roomNumber}}</p>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll
+      on-infinite="loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
 </ion-view>
