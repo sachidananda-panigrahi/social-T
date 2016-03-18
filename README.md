@@ -1,2 +1,2 @@
-# socialtext
-socialtext
+# social
+social
